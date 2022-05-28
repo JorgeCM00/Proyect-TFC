@@ -23,9 +23,9 @@ Perfil
             <div class="row">
                 <div class="col-12  mb-5">
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-5 col-lg-5 col-sm-12">
                             <div class="mx-5 mt-5 mb-5" style="width: 15rem;">
-                                <div class="col-6 text-center">
+                                <div class="col-12 text-center">
                                         <?php
                                         if (isset($datos->foto)) {
                                         ?> <img class="img-fluid text-center " style="max-width: 300px;" src="{{URL::asset('imagenes/'.$datos->user_id.'.jpeg')}}" alt="{{$datos->foto}}">
@@ -38,7 +38,7 @@ Perfil
                                 </div>
                             </div>
                         </div>
-                        <div class="col-7">
+                        <div class="col-7 col-sm-12 col-lg-7">
                         <div class="col-12   mx-5 justify-content-center fs-5">
 
                                 <br><br><br><br>

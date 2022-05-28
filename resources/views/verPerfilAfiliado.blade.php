@@ -30,11 +30,11 @@ use Illuminate\Support\Facades\Auth; ?>
                 </div>
             </div>
             <div class="row  d-flex justify-content-center align-items-center ">
-                <div class="col-12  mb-5">
+                <div class="col-12 col-sm-12 col-lg-12  mb-5">
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-5 col-sm-12 col-lg-5">
                             <div class="card mx-5 mt-5 mb-5 border border-0  " style="width: 15rem;  background-color:#FFFFFF00 ">
-                                <div class="col-6 col-sm-12 ">
+                                <div class="col-12 col-sm-12 col-lg-12 ">
                                     <div class="card-img-top text-center">
                                         <?php
                                         if (isset($datos->foto)) {
@@ -68,8 +68,8 @@ use Illuminate\Support\Facades\Auth; ?>
 
                             </div>
                         </div>
-                        <div class="col-7">
-                            <div class="col-12   my-5 py-5 justify-content-center fs-5"  >
+                        <div class="col-7 col-sm-12 col-lg-7">
+                            <div class="col-12 my-5 py-5 justify-content-center fs-5"  >
 
                                <p>
                                 {{__('First name')}}:
