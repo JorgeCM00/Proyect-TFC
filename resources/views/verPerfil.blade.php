@@ -39,20 +39,28 @@ Perfil
                             </div>
                         </div>
                         <div class="col-7 col-sm-12 col-lg-7">
-                        <div class="col-12   mx-5 justify-content-center fs-5">
+                        <div class="col-12   mx-5 my-5 py-4 justify-content-center fs-5">
 
-                                <br><br><br><br>
-                                {{__('First name')}}:
-                                {{$datos->nombre}}<br>
-                                {{__('Last name')}}:
-                                {{$datos->apellidos}}<br>
+                                <p>
+                                    <span class="fw-bold">
+                                        {{__('First name')}}:
+                                    </span>
+                                    {{$datos->nombre}}
+                                </p>
+                                <p>
+                                    <span class="fw-bold"> {{__('Last name')}}:
+                                    </span>
+                                    {{$datos->apellidos}}
+                                </p>
                                 <?php
                                 if (!isset($datos->descripcion)) {
                                 } else {
                                 ?>
-                                    {{__('Description')}}:<br>
+                                   <p>
+                                    <span class="fw-bold" style="word-wrap: break-word;"> {{__('Description')}}:
+                                    </span>
                                     {{$datos->descripcion}}
-
+                                </p>
                                 <?php
                                 }
                                 ?>

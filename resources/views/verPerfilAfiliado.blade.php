@@ -49,19 +49,21 @@ use Illuminate\Support\Facades\Auth; ?>
                                 </div>
                                 @foreach($datosAfiliado as $afiliado)
                                 <div class="card-body">
-                                    <h5 class="card-title">Biografia</h5>
+                                    <h5 class="card-title fw-bold">Biografia</h5>
                                     {{$afiliado->bio}}
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">{{__('Social media')}}</h5>
-                                    <ul class="list-group list-group-flush "style=" background-color:#FFFFFF00 ">
+                                    <h5 class="card-title fw-bold">{{__('Social media')}}</h5>
+                                    <ul class="list-group list-group-flush " style=" background-color:#FFFFFF00 ">
                                         <input type="hidden" name="afiliado_id" value="{{$afiliado->user_id}}">
-                                        <li class="list-group-item  "style=" background-color:#FFFFFF00 ">
+                                        <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
                                             <pre>Twitter:       <a href="https://twitter.com/{{$afiliado->twitter}}">{{$afiliado->twitter}}</a></li> </pre>
-                                        <li class="list-group-item  "style=" background-color:#FFFFFF00 ">
+                                        <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
                                             <pre>Instagram:     <a href="https://www.instagram.com/{{$afiliado->insta}}">{{$afiliado->insta}}</a></li></pre>
-                                        <li class="list-group-item  "style=" background-color:#FFFFFF00 ">
-                                            <pre>{{__('email')}}: {{$datos->email}}</li></pre>
+                                        <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
+                                            <pre>{{__('email')}}: {{$datos->email}}
+                                        </li>
+                                        </pre>
 
                                     </ul>
                                 </div>
@@ -69,33 +71,51 @@ use Illuminate\Support\Facades\Auth; ?>
                             </div>
                         </div>
                         <div class="col-7 col-sm-12 col-lg-7">
-                            <div class="col-12 my-5 py-5 justify-content-center fs-5"  >
+                            <div class="col-12 my-5 py-5 justify-content-center fs-5">
+                                <p>
+                                    <span class="fw-bold">
+                                        {{__('First name')}}:
+                                    </span>
+                                    {{$datos->nombre}}
+                                </p>
+                                <p>
+                                    <span class="fw-bold"> {{__('Last name')}}:
+                                    </span>
+                                    {{$datos->apellidos}}
+                                </p>
+                                <p>
+                                    <span class="fw-bold" style="word-wrap: break-word;"> {{__('Description')}}:
+                                    </span>
+                                    {{$datos->descripcion}}
+                                </p>
 
-                               <p>
-                                {{__('First name')}}:
-                                {{$datos->nombre}}</p>
-                              <p>  {{__('Last name')}}:
-                                {{$datos->apellidos}}</p>
-                               <p style="word-wrap: break-word;"> {{__('Description')}}:
-                                {{$datos->descripcion}}</p>
 
 
-
-                               
-                                <p>{{__('Country')}}:
-                                {{$datos->pais}}</p>
-
-                                <p>{{__('City')}}:
-                                {{$datos->ciudad}}</p>
-
-                                <p>{{__('Postal code')}}:
-                                {{$datos->CP}}</p>
-
-                                <p>{{__('Street number and gate')}}:
-                                {{$datos->calle_numero}}</p>
-
-                              <p>  {{__('Floor/door or block')}}:
-                                {{$datos->piso_puerta_bloque}}</p>
+                                <p>
+                                    <span class="fw-bold">{{__('Country')}}:
+                                    </span>
+                                    {{$datos->pais}}
+                                </p>
+                                <p>
+                                    <span class="fw-bold">{{__('City')}}:
+                                    </span>
+                                    {{$datos->ciudad}}
+                                </p>
+                                <p>
+                                    <span class="fw-bold">{{__('Postal code')}}:
+                                    </span>
+                                    {{$datos->CP}}
+                                </p>
+                                <p>
+                                    <span class="fw-bold">{{__('Street number and gate')}}:
+                                    </span>
+                                    {{$datos->calle_numero}}
+                                </p>
+                                <p>
+                                    <span class="fw-bold"> {{__('Floor/door or block')}}:
+                                    </span>
+                                    {{$datos->piso_puerta_bloque}}
+                                </p>
                             </div>
                         </div>
                     </div>
