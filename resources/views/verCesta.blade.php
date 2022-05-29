@@ -18,10 +18,10 @@ Perfil
     <?php
     if (isset($datosCesta[0])) {
     ?>
-        <div class="container my-5 py-5 px-5 bg-light shadow-sm">
+        <div class="container my-5 py-5 px-5  ">
             <div class="col-12 col-lg-12 col-sm-12">
                 <div class="row">
-                    <h1 class="fw-bold mb-4 text-primary">{{ __('Cart') }}</h1>
+                    <h1 class="fw-bold mb-4 text-primary ">{{ __('Cart') }}</h1>
                 </div>
                 <div class="row">
                     <div class="col-12">
