@@ -23,13 +23,12 @@ Perfil
                 <div class="row">
                     <h1 class="fw-bold mb-4 text-primary ">{{ __('Cart') }}</h1>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-center px-2">
-
+                <div class="row d-flex justify-content-center px-2">
+                    <div class="col-12 col-lg-12 col-sm-12">
                             <form action="/comprar/{{ auth()->id() }}" method="post">
                                 @csrf
-                                <table class="table table-striped">
+                                <div class="table-responsive-sm">
+                                <table class="table table-striped table-responsive-sm ">
                                     <thead>
                                         <th class="align-middle text-center">{{__('Image')}}</th>
                                         <th class="align-middle text-center">{{__('Name')}}</th>
@@ -52,69 +51,69 @@ Perfil
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <?php //Coje el precio total
-                                $cont = $datosCesta->count();
-                                $total = 0;
-                                for ($i = 0; $i < $cont; $i++) {
-                                    $precio = floatval($datosCesta[$i]->precio);
-                                    $cantidad = intval($datosCesta[$i]->cantidad);
-                                    $total += $precio * $cantidad;
-                                }
-                                ?>
-                                <div class="row my-4">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="input-group mb-2">
-                                                <div class="input-group-prepend"></div>
-                                                <select class="form-select  bg-secondary bg-opacity-75" aria-label="Default select example" name="pago">
-                                                    <option selected disabled>{{__('Payment method')}} </option>
-                                                    <option value="efectivo">{{__('Cash')}}</option>
-                                                    <option value="tarjeta">{{__('Credit card')}}</option>
-                                                    <option value="paypal">{{__('Paypal')}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="row my-4">
-                                    <div class="col-6 col-lg-6 col-sm-6  ">
-                                        <div class="fs-5 fw-bold"> {{__('Total price')}} <?php echo $total . '€'; ?></div>
-                                        <input type="hidden" name="precioTot" value="<?php echo $total ?>">
-                                    </div>
-                                    <div class="col-6 col-lg-6 col-sm-6  text-end">
-                                        <input class="btn btn-success  btn-block rounded-5 py-2" type="submit" name="pagar" value="{{__('Pay')}}">
-                                    </div>
-
-                                </div>
-                            </form>
-                            <?php
-
-                            ?>
                         </div>
+                    <?php //Coje el precio total
+                    $cont = $datosCesta->count();
+                    $total = 0;
+                    for ($i = 0; $i < $cont; $i++) {
+                        $precio = floatval($datosCesta[$i]->precio);
+                        $cantidad = intval($datosCesta[$i]->cantidad);
+                        $total += $precio * $cantidad;
+                    }
+                    ?>
+                    <div class="row my-4 ">
+                        <div class="col-12 col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend"></div>
+                                    <select class="form-select  bg-secondary bg-opacity-75" aria-label="Default select example" name="pago">
+                                        <option selected disabled>{{__('Payment method')}} </option>
+                                        <option value="efectivo">{{__('Cash')}}</option>
+                                        <option value="tarjeta">{{__('Credit card')}}</option>
+                                        <option value="paypal">{{__('Paypal')}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        
+                            <div class="col-6 col-lg-6 col-sm-12  ">
+                                <div class="fs-5 fw-bold"> {{__('Total price')}} <?php echo $total . '€'; ?></div>
+                                <input type="hidden" name="precioTot" value="<?php echo $total ?>">
+                            </div>
+                            <div class="col-6 col-lg-6 col-sm-12  text-end">
+                                <input class="btn btn-success  btn-block rounded-5 py-2" type="submit" name="pagar" value="{{__('Pay')}}">
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    <?php
+</div>
+</div>
+<?php
     } else { ?>
-        <div class="container my-5 py-5 px-5 bg-light shadow-sm">
-            <div class="col-12 col-lg-12 col-sm-12">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-6 col-lg-6 col-sm-12">
-                                <div class="d-flex justify-content-center">
-                                    <h2><strong>{{__('Empty cart')}}</strong></h2>
+    <div class="container my-5 py-5 px-5 bg-light shadow-sm">
+        <div class="col-12 col-lg-12 col-sm-12">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6 col-lg-6 col-sm-12">
+                            <div class="d-flex justify-content-center">
+                                <h2><strong>{{__('Empty cart')}}</strong></h2>
 
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <?php
+    </div>
+<?php
     }
-    ?>
+?>
 </div>
 @endsection
