@@ -43,7 +43,9 @@ Tienda
                                 <input type="text" value="{{$tienda->precio}} €" class="text-center fs-5 input-group-text" readonly size="2%">
                             </div>
                             <div class="col-6 col-sm-12 col-lg-6">
-                                <a class="btn btn-success  btn-block rounded-5 py-2" href="/cesta/{{$tienda->id}}">{{__('Add to the cart')}}</a>
+                                <a class="btn btn-success  btn-block rounded-5 py-2" <?php  if (Auth::user()){?>onclick="alert('{{__('The product was added to your cart in `my site`')}}')"
+                                    <?php } ?> href="/cesta/{{$tienda->id}}">{{__('Add to the cart')}}
+                                </a>
                             </div>
                         </div>
                     </div>

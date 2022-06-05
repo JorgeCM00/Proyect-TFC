@@ -11,6 +11,12 @@ use App\Models\Etiqueta;
 
 class ProductosController extends Controller
 {
+    /**
+     * @param $id
+     * @var Etiquetas $etiquetas
+     * @var Afiliada $afiliado
+     * @return view
+     */
     public function crearProductos($id)
     {
         $etiquetas = Etiqueta::all();
@@ -18,19 +24,36 @@ class ProductosController extends Controller
         return view('crearProducto', array('afiliado' => $afiliado), array('etiquetas' => $etiquetas));
     }
 
-
+    /**
+     * @var Producto $datosTienda
+     * @return view 
+     */
     public function mostrarTienda()
     {
         $datosTienda = Producto::orderby('created_at', 'desc')->paginate(5);
         return view('tienda')->with('datosTienda', $datosTienda);
     }
 
+    /**
+     * @param $id
+     * @var array $datosTienda
+     * @return view 
+     */
     public function listaProductos($id)
     {
         $datosTienda = DB::select('select id, afiliado_id,nombre,descripcion,imagen,precio from productos where afiliado_id=?', [$id]);
         return view('misProductos', array('datosTienda' => $datosTienda));
     }
 
+    /**
+     * @param $producto_id
+     * @var Producto $producto
+     * @var Etiqueta $etiquetas
+     * @var array $etiquetas_marcada
+     * @var $marcada
+     * @var array $arrayMarcadas
+     * @return view
+    */
     public function gestionarProducto($producto_id)
     {
         $producto = Producto::find($producto_id);
@@ -50,8 +73,11 @@ class ProductosController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return json
+     */
     public function subir(Request $request)
-
     {
         //A diferencia del perfil aqui el producto no está creado 
 
@@ -61,6 +87,11 @@ class ProductosController extends Controller
         return response()->json('okey');
     }
 
+    /**
+     * @param Request $request
+     * @var Producto $producto
+     * @return json
+     */
     public function editar(Request $request)//edita la foto recibiendo una nueva y la renombra sustituyendo  la anterior 
     {
         $producto = Producto::find($request->producto_id);
@@ -70,6 +101,15 @@ class ProductosController extends Controller
         return response()->json('okey');
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @var Afiliado $afiliado
+     * @var Producto $producto
+     * @var $id_producto
+     * @var Etiqueta $etiquetas
+     * @return view
+     */
     public function creacionProducto(Request $request, $id)
     {
 
@@ -113,6 +153,14 @@ class ProductosController extends Controller
         return view('productoCorrecto');
     }
 
+    /**
+     * @param Request $reqiest
+     * @param $producto_id
+     * @var Producto $producto
+     * @var borrarEtiqueta
+     * @var Etiqueta $etiquetas
+     * @return view
+     */
     public function editarProducto(Request $request, $producto_id)
     {
         $producto = Producto::find($producto_id);
@@ -135,6 +183,12 @@ class ProductosController extends Controller
         return view('productoCorrecto');
     }
 
+    /**
+     * @param $producto_id
+     * @var Producto $producto
+     * @var $image_path
+     * @return view
+     */
     public function borrar($producto_id)
     {
         $producto = Producto::find($producto_id);
@@ -145,10 +199,13 @@ class ProductosController extends Controller
         Producto::destroy($producto_id);
         return view('productoBorrado');
     }
-
+    /**
+     * @param $id
+     * @var Producto $productos
+     * @return view
+     */
     public function productosAfiliado($id)
     {
-
         $productos = Producto::where('afiliado_id', '=', $id)->orderby('created_at', 'desc')->paginate(5);
         return view('verProductoAfiliado', array('productos' => $productos));
     }

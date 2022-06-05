@@ -7,129 +7,118 @@ Perfil
 
 use Illuminate\Support\Facades\Auth; ?>
 @foreach($datosPerfil as $datos)
-<div class="container">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <div class="container mt-3 ">
-        <fieldset>
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-6">
-                        <h1> {{__('Profile')}}</h1>
-                    </div>
-                    <div class="col-6">
-                        <?php if (Auth::user()) {
-                            if ($datos->user_id == Auth::user()->id) { ?>
-                                <div class="float-end">
-                                    <a href="/perfil/edicion/{{$datos->user_id}}"><button class="btn btn-primary mt-2">{{__('Edit')}}</button></a>
-                                </div>
-                        <?php
-                            }
-                        }
-                        ?>
+<div class="container px-5">
+    <div class="col-12">
+        <div class="row  my-5">
+            <div class="col-6">
+                <h1> {{__('Profile')}}</h1>
+            </div>
+            <?php
+            if (Auth::id() == $datos->user_id) {
+            ?>
+                <div class="col-6">
+                    <div class="float-end">
+                        <a href="/perfil/edicion/{{$datos->user_id}}"><button class="btn btn-primary mt-2">{{__('Edit')}}</button></a>
                     </div>
                 </div>
-            </div>
-            <div class="row  d-flex justify-content-center align-items-center ">
-                <div class="col-12 col-sm-12 col-lg-12  mb-5">
-                    <div class="row">
-                        <div class="col-5 col-sm-12 col-lg-5">
-                            <div class="card mx-5 mt-5 mb-5 border border-0  " style="width: 15rem;  background-color:#FFFFFF00 ">
-                                <div class="col-12 col-sm-12 col-lg-12 ">
-                                    <div class="card-img-top text-center">
-                                        <?php
-                                        if (isset($datos->foto)) {
-                                        ?> <img class="img-fluid border border-1" style="width: 12rem;" src="{{URL::asset('imagenes/'.$datos->user_id.'.jpeg')}}" alt="{{$datos->foto}}">
-                                        <?php
-                                        } else { ?>
-                                            <img class="img-fluid border border-1" style="width: 12rem;" id="imagen" src="{{URL::asset('imagenes/images.png')}}" alt="Foto de perfil">
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                                @foreach($datosAfiliado as $afiliado)
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold">Biografia</h5>
-                                    {{$afiliado->bio}}
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold">{{__('Social media')}}</h5>
-                                    <ul class="list-group list-group-flush " style=" background-color:#FFFFFF00 ">
-                                        <input type="hidden" name="afiliado_id" value="{{$afiliado->user_id}}">
-                                        <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
-                                            <pre>Twitter:       <a href="https://twitter.com/{{$afiliado->twitter}}">{{$afiliado->twitter}}</a></li> </pre>
-                                        <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
-                                            <pre>Instagram:     <a href="https://www.instagram.com/{{$afiliado->insta}}">{{$afiliado->insta}}</a></li></pre>
-                                        <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
-                                            <pre>{{__('email')}}: {{$datos->email}}
-                                        </li>
-                                        </pre>
-
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-7 col-sm-12 col-lg-7">
-                            <div class="col-12 my-5 py-5 justify-content-center fs-5">
-                                <p>
-                                    <span class="fw-bold">
-                                        {{__('First name')}}:
-                                    </span>
-                                    {{$datos->nombre}}
-                                </p>
-                                <p>
-                                    <span class="fw-bold"> {{__('Last name')}}:
-                                    </span>
-                                    {{$datos->apellidos}}
-                                </p>
-                                <p>
-                                    <span class="fw-bold" style="word-wrap: break-word;"> {{__('Description')}}:
-                                    </span>
-                                    {{$datos->descripcion}}
-                                </p>
-
-
-
-                                <p>
-                                    <span class="fw-bold">{{__('Country')}}:
-                                    </span>
-                                    {{$datos->pais}}
-                                </p>
-                                <p>
-                                    <span class="fw-bold">{{__('City')}}:
-                                    </span>
-                                    {{$datos->ciudad}}
-                                </p>
-                                <p>
-                                    <span class="fw-bold">{{__('Postal code')}}:
-                                    </span>
-                                    {{$datos->CP}}
-                                </p>
-                                <p>
-                                    <span class="fw-bold">{{__('Street number and gate')}}:
-                                    </span>
-                                    {{$datos->calle_numero}}
-                                </p>
-                                <p>
-                                    <span class="fw-bold"> {{__('Floor/door or block')}}:
-                                    </span>
-                                    {{$datos->piso_puerta_bloque}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
+            <?php
+            }
+            ?>
+        </div>
     </div>
+    <div class="row  my-5">
+        <div class="col-12 col-lg-6 col-sm-12">
 
-    <!--<legend> Usuario </legend>{{-- $id->user --}}-->
-    <!--Esto es un comentario en blade, ahí iria el nombre del usuario que entra en su perfil, es decir el perfil al que accede -->
+            <?php
+            if (isset($datos->foto)) {
+            ?> <img class="img-fluid text-center " style="width: 225px;" src="{{URL::asset('imagenes/'.$datos->user_id.'.jpeg')}}" alt="{{$datos->foto}}">
+            <?php
+            } else { ?>
+                <img class="img-fluid text-center " style="width: 225px;" id="imagen" src="{{URL::asset('imagenes/images.png')}}" alt="Foto de perfil">
+            <?php
+            }
+            ?>
 
-    <!--Como hacer para poder poner aquí el perfil, y saber si existe el perfil o no -->
-    <!--Preguntarle a marcos si debería hacer 2 blades, o si debería hacer para cada campo un condicional de si existe ponerlo. else No.-->
+            @foreach($datosAfiliado as $afiliado)
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Biografia</h5>
+                {{$afiliado->bio}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{__('Social media')}}</h5>
+                <ul class="list-group list-group-flush " style=" background-color:#FFFFFF00 ">
+                    <input type="hidden" name="afiliado_id" value="{{$afiliado->user_id}}">
+                    <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
+                        <pre>Twitter:       <a href="https://twitter.com/{{$afiliado->twitter}}">{{$afiliado->twitter}}</a></li> </pre>
+                    <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
+                        <pre>Instagram:     <a href="https://www.instagram.com/{{$afiliado->insta}}">{{$afiliado->insta}}</a></li></pre>
+                    <li class="list-group-item  " style=" background-color:#FFFFFF00 ">
+                        <pre>{{__('email')}}: {{$datos->email}}
+                    </li>
+                    </pre>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-12 col-lg-6 col-sm-12  ">
+            <div class=" my-5 ">
+                <p>
+                    <span class="fw-bold">
+                        {{__('First name')}}:
+                    </span>
+                    {{$datos->nombre}}
+                </p>
+                <p>
+                    <span class="fw-bold"> {{__('Last name')}}:
+                    </span>
+                    {{$datos->apellidos}}
+                </p>
+                <p>
+                    <span class="fw-bold" style="word-wrap: break-word;"> {{__('Description')}}:
+                    </span>
+                    {{$datos->descripcion}}
+                </p>
+
+
+
+                <p>
+                    <span class="fw-bold">{{__('Country')}}:
+                    </span>
+                    {{$datos->pais}}
+                </p>
+                <p>
+                    <span class="fw-bold">{{__('City')}}:
+                    </span>
+                    {{$datos->ciudad}}
+                </p>
+                <p>
+                    <span class="fw-bold">{{__('Postal code')}}:
+                    </span>
+                    {{$datos->CP}}
+                </p>
+                <p>
+                    <span class="fw-bold">{{__('Street number and gate')}}:
+                    </span>
+                    {{$datos->calle_numero}}
+                </p>
+                <p>
+                    <span class="fw-bold"> {{__('Floor/door or block')}}:
+                    </span>
+                    {{$datos->piso_puerta_bloque}}
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--<legend> Usuario </legend>{{-- $id->user --}}-->
+<!--Esto es un comentario en blade, ahí iria el nombre del usuario que entra en su perfil, es decir el perfil al que accede -->
+
+<!--Como hacer para poder poner aquí el perfil, y saber si existe el perfil o no -->
+<!--Preguntarle a marcos si debería hacer 2 blades, o si debería hacer para cada campo un condicional de si existe ponerlo. else No.-->
 </div>
 @endforeach
 @endforeach
+
 @endsection

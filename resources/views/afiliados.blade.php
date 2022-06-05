@@ -16,10 +16,10 @@ Afiliados
                                 <?php
 
                                 if (isset($afiliado->foto)) { //Si no hay imagen pone una por defecto
-                                ?> <img src="{{URL::asset('imagenes/'.$afiliado->user_id.'.jpeg')}}" class="img-fluid " style="width: 400px; height:300px ">
+                                ?> <img src="{{URL::asset('imagenes/'.$afiliado->user_id.'.jpeg')}}" class="img-fluid rounded-circle p-3 " style="width: 400px; height:300px ">
                                 <?php
                                 } else { ?>
-                                    <img class="img-fluid " style="width: 300px;" src="{{URL::asset('imagenes/images.png')}}" alt="Foto de perfil">
+                                    <img class="img-fluid rounded-circle p-3 " style="width: 300px;" src="{{URL::asset('imagenes/images.png')}}" alt="Foto de perfil">
                                 <?php
                                 }
                                 ?>

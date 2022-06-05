@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PerfilController extends Controller
 {
+    /**
+     * @param $id
+     * @var User $user
+     * @var array $datosPerfil
+     * @var Afiliado $afiliado
+     * @return view 
+     */
     public function verPerfil($id)
     {
         $user = User::find($id);
@@ -25,6 +32,13 @@ class PerfilController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @var User $user
+     * @var array $datosPerfil
+     * @var Afiliado $afiliado
+     * @return view 
+     */
     public function editarPerfil($id)
     {
         $user = User::find($id);
@@ -38,6 +52,11 @@ class PerfilController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @var Perfil $perfil
+     * @return json
+     */
     //metodo que es llamado por ajax para recibir el nombre de la imagen y moverlo a la carpeta correspondiente con el formato que queramos
     public function upload(Request $request)
     {
@@ -47,6 +66,12 @@ class PerfilController extends Controller
         $perfil->save();
         return response()->json('okey');
     }
+    /**
+     * @param Request $request
+     * @var Perfil $perfil
+     * @var User $user
+     * @return view
+     */
     public function edicion(Request $request, $id)
     {
 

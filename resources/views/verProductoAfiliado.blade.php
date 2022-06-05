@@ -12,7 +12,7 @@ Tienda
             <div class="container my-5 py-4 bg-light">
                 <div class="row ">
                     <div class="col-12 col-lg-6 col-sm-12">
-                        <img src="{{URL::asset('productos/'.$producto->imagen)}}" class="img-fluid text-center " style="width: 400px; height: 300px; ">
+                        <img src="{{URL::asset('productos/'.$producto->imagen)}}" class="img-fluid text-center " style="width: 400px; height: 300px;  ">
                     </div>
                     <div class="col-12 col-lg-6 col-sm-12">
                         <div class=" text-center mt-2">
@@ -41,7 +41,9 @@ Tienda
                                 <input type="text" value="{{$producto->precio}} €" class="text-center fs-5 input-group-text" readonly size="2%">
                             </div>
                             <div class="col-6 col-sm-12 col-lg-6">
-                                <a class="btn btn-success  btn-block rounded-5 py-2" href="/cesta/{{$producto->id}}">{{__('Add to the cart')}}</a>
+                                <a class="btn btn-success  btn-block rounded-5 py-2" <?php  if (Auth::user()){?>onclick="alert('{{__('The product was added to your cart in `my site`')}}')"
+                                    <?php } ?>
+                                 href="/cesta/{{$producto->id}}">{{__('Add to the cart')}}</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +60,6 @@ Tienda
                 </div>
             </div>
         </div>
-</div>
 <?php
     } else { ?>
     <div class="container my-5 py-5 px-5 bg-light shadow-sm">
@@ -79,4 +80,6 @@ Tienda
 <?php
     }
 ?>
+</div>
+
 @endsection

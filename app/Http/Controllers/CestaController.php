@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 class CestaController extends Controller
 {
     
+    /**
+     * @param $id
+     * @var Producto $producto
+     * @var User $cliente
+     * @var array $compruebaCesta
+     * @var array stockProducto
+     * @return redirect
+     */
     public function addProducto($id){
         $producto=Producto::find($id);
         $cliente= Auth::user();
@@ -39,18 +47,37 @@ class CestaController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @var cliente $cliente
+     * @var array $datosCesta
+     * @return view con datos de datosCesta
+     */
     public function obtenerCesta($id){
         $cliente=Cliente::find($id);
         $datosCesta=DB::table('cestas')->join('productos','productos.id','=','cestas.producto_id')->where('cliente_id','=',$cliente->user_id)->get();
         return view('verCesta')->with('datosCesta', $datosCesta);
     }
-
+    /**
+     * @param $id
+     * @var Producto $producto
+     * @return redirect
+     */
     public function borrarProductoCesta($id){
         $producto=DB::table('cestas')->where('producto_id','=',$id);
         $producto->delete();
         return back();
     }
-
+    /**
+     * @param Request $request
+     * @param $id
+     * @var Cliente $cliente
+     * @var Pedido $pedido
+     * @var array $datosCesta
+     * @var $insercion
+     * @var $restaStock
+     * @return view
+     */
     public function pagar(Request $request,$id){
 
         $request->validate([

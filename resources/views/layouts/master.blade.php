@@ -84,6 +84,11 @@
 </script>
 
 <body class="bg-primary bg-opacity-25">
+    
+    @include('layouts.header')
+    @include('layouts.menu')
+    @yield('body')
+    @include('layouts.footer')
     <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
         🍪{{__('This site use cookies to improve the user experience.')}}
         <a href="https://www.cookiesandyou.com/" target="blank">{{__('Learn more')}}</a>
@@ -92,24 +97,6 @@
         <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.hideCookieBanner()">
             {{__('Accept all the cookies')}}
         </button>
-    </div>
-    @include('layouts.header')
-    @include('layouts.menu')
-    <div class="container-fluid">
-
-
-        <div class="row">
-
-        </div>
-
-        <div class="row">
-            @yield('body')
-        </div>
-
-
-
-        @include('layouts.footer')
-
     </div>
 </body>
 
