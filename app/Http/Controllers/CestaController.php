@@ -85,6 +85,10 @@ class CestaController extends Controller
         ]);
 
         $cliente=Cliente::find($id);
+        if((Auth::user()->getPerfil()[0]->calle_numero)== null){
+            
+            return redirect()->route('editaPerfil',['id'=>$id]);
+        }
         $cliente->metodoPago=$request->pago;
         $cliente->save();
         $pedido=new Pedido();

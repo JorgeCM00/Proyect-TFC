@@ -3,6 +3,25 @@
 Tienda
 @endsection
 @section('body')
+
+<style>
+        #cb-cookie-banner {
+            z-index: 100;
+            position: fixed;
+            bottom: 2%;
+            left: 25%;
+            right: 25%;
+        }
+    </style>
+<div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
+        🍪{{__('This site use cookies to improve the user experience.')}}
+        <a href="https://www.cookiesandyou.com/" target="blank">{{__('Learn more')}}</a>
+        <br />
+        <br>
+        <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.hideCookieBanner()">
+            {{__('Accept all the cookies')}}
+        </button>
+    </div>
 <div class="container">
 
     <?php if (isset($datosTienda[0])) {
@@ -85,4 +104,48 @@ Tienda
     }
     ?>
 </div>
+<script>
+    /*
+     * Javascript to show and hide cookie banner using localstorage
+     */
+
+    /**
+     * @description Shows the cookie banner
+     */
+    function showCookieBanner() {
+        let cookieBanner = document.getElementById("cb-cookie-banner");
+        cookieBanner.style.display = "block";
+        <?php
+        $_SESSION['cookie_readed'] = "Yep!";
+        ?>
+    }
+
+    /**
+     * @description Hides the Cookie banner and saves the value to localstorage
+     */
+    function hideCookieBanner() {
+        localStorage.setItem("cb_isCookieAccepted", "yes");
+
+        let cookieBanner = document.getElementById("cb-cookie-banner");
+        cookieBanner.style.display = "none";
+    }
+
+    /**
+     * @description Checks the localstorage and shows Cookie banner based on it.
+     */
+    function initializeCookieBanner() {
+        let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
+        if (isCookieAccepted === null) {
+            localStorage.setItem("cb_isCookieAccepted", "no");
+            showCookieBanner();
+        }
+        if (isCookieAccepted === "no") {
+            showCookieBanner();
+        }
+    }
+
+    // Assigning values to window object
+    window.onload = initializeCookieBanner();
+    window.cb_hideCookieBanner = hideCookieBanner;
+</script>
 @endsection

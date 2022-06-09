@@ -58,17 +58,24 @@ class User extends Authenticatable
         return $this->hasOne(Afiliado::class);
     }
 
-    public function perfil() {
+    public function perfil()
+    {
         return $this->hasOne(Perfil::class);
-        }
+    }
 
-    public function esAfiliado(){
-        $afiliado= DB::select('select user_id from afiliados where user_id = ?',[Auth::user()->id]);
-        if($afiliado){
+    public function esAfiliado()
+    {
+        $afiliado = DB::select('select user_id from afiliados where user_id = ?', [Auth::user()->id]);
+        if ($afiliado) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
+    }
+    public function getPerfil()
+    {
+        $perfil = DB::select('select * from perfil where user_id = ?', [Auth::user()->id]);
+
+        return $perfil;
     }
 }

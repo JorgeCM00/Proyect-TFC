@@ -31,7 +31,7 @@ Route::middleware(LocaleCookieMiddleware::class)->group(function(){
 
 Route::get('/', [ProductosController::class,'mostrarTienda']);
 Route::get('/perfil/{id}',[PerfilController::class,'verPerfil'])->middleware('auth');
-Route::get('/perfil/edicion/{id}',[PerfilController::class,'editarPerfil'])->middleware('auth');
+Route::get('/perfil/edicion/{id}',[PerfilController::class,'editarPerfil'])->middleware('auth')->name("editaPerfil");
 Route::post('/perfil/edicion/{id}',[PerfilController::class,'edicion'])->middleware('auth');
 Route::get('/afiliarse/{id}',[AfiliadoController::class,'afiliar'])->middleware('auth');
 Route::post('/afiliarse/{id}',[AfiliadoController::class,'afiliarse'])->middleware('auth');
